@@ -6,23 +6,27 @@
 #include <string>
 
 class ElementFacturable {
-private:
+
+protected:
     std::string description;
     double prix;
-    double taxeBase;
-    double taxeAjout;
+
+    static const int TAXE_BASE = 8;
+
 public:
-    ElementFacturable(const std::string &description, double prix);
+    ElementFacturable(std::string description, double prix);
 
-    double calculerMontant();
-
-    const std::string &getDescription() const;
+    const std::string getDescription() const;
 
     double getPrix() const;
 
-    double getTaxeBase() const;
+    virtual double calculerSousTotal();
 
-    double getTaxeAjout() const;
+    virtual double calculerMontantTaxeBase();
+
+    virtual double calculerMontantTaxeAjoutee();
+
+    virtual double calculerTotal();
 };
 
 
