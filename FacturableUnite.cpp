@@ -1,7 +1,3 @@
-//
-// Created by lauriane on 2020-05-03.
-//
-
 #include "FacturableUnite.h"
 
 FacturableUnite::FacturableUnite( std::string description, double prix) : ElementFacturable(
@@ -10,21 +6,26 @@ FacturableUnite::FacturableUnite( std::string description, double prix) : Elemen
 }
 
 void FacturableUnite::setQuantite(int quantite) {
+    //TODO Add check
     this->quantite = quantite;
 }
 
-double FacturableUnite::calculerSousTotal()
+int FacturableUnite::getQuantite() {
+    return this->quantite;
+}
 
+double FacturableUnite::calculerSousTotal() {
+    return this->quantite * this->prix;
 }
 
 double FacturableUnite::calculerMontantTaxeBase() {
-
+    return calculerSousTotal() * (TAXE_BASE / 100.00);
 }
 
 double FacturableUnite::calculerMontantTaxeAjoutee() {
-
+    return calculerSousTotal() * (TAXE_AJOUTEE / 100.00);
 }
 
 double FacturableUnite::calculerTotal() {
-
+    return calculerSousTotal() + calculerMontantTaxeBase() + calculerMontantTaxeAjoutee();
 }
