@@ -9,7 +9,7 @@ class FacturableFixe : ElementFacturable {
 private:
     bool selectionne;
 
-    const static int tAXE_AJOUTEE = 7;
+    const static int TAXE_AJOUTEE = 7;
 
 public:
     FacturableFixe(std::string description, double prix);

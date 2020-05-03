@@ -1,4 +1,5 @@
 #include "FacturableFixe.h"
+#include "FacturableUnite.h"
 
 FacturableFixe::FacturableFixe( std::string description, double prix) : ElementFacturable(
         description, prix) {
@@ -6,25 +7,28 @@ FacturableFixe::FacturableFixe( std::string description, double prix) : ElementF
 }
 
 void FacturableFixe::selectionnerService() {
+    //TODO Add check
     this->selectionne = true;
 }
 
 bool FacturableFixe::isSelectionne() {
-
+    return selectionne;
 }
 
-double FacturableFixe::calculerSousTotal()
+double FacturableFixe::calculerSousTotal() {
+    if (selectionne) return this->prix;
 
+    return 0.00;
 }
 
-double FacturableUnite::calculerMontantTaxeBase() {
-
+double FacturableFixe::calculerMontantTaxeBase() {
+    return calculerSousTotal() * (TAXE_BASE / 100);
 }
 
-double FacturableUnite::calculerMontantTaxeAjoutee() {
-
+double FacturableFixe::calculerMontantTaxeAjoutee() {
+    return calculerSousTotal() * (TAXE_AJOUTEE / 100);
 }
 
 double FacturableUnite::calculerTotal() {
-
+    return calculerSousTotal() + calculerMontantTaxeBase() + calculerMontantTaxeAjoutee();
 }
