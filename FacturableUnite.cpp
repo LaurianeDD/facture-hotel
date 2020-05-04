@@ -25,3 +25,7 @@ double FacturableUnite::calculerMontantTaxeAjoutee() {
 double FacturableUnite::calculerTotal() {
     return calculerSousTotal() + calculerMontantTaxeBase() + calculerMontantTaxeAjoutee();
 }
+
+std::string FacturableUnite::toString() {
+    return this->description + "\t Quantite: " + std::to_string(this->quantite);
+}
