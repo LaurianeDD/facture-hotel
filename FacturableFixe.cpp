@@ -3,17 +3,10 @@
 
 FacturableFixe::FacturableFixe( std::string description, double prix) : ElementFacturable(
         description, prix) {
-    this->selectionne = false;
-}
-
-bool FacturableFixe::isSelectionne() {
-    return selectionne;
 }
 
 double FacturableFixe::calculerSousTotal() {
-    if (selectionne) return this->prix;
-
-    return 0.00;
+    return prix;
 }
 
 double FacturableFixe::calculerMontantTaxeBase() {

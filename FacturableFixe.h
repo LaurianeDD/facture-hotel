@@ -5,18 +5,12 @@
 #include <string>
 #include "ElementFacturable.h"
 
-class FacturableFixe : ElementFacturable {
+class FacturableFixe : public ElementFacturable {
 private:
-    bool selectionne;
-
     const static int TAXE_AJOUTEE = 7;
 
 public:
     FacturableFixe(std::string description, double prix);
-
-    void selectionnerService();
-
-    bool isSelectionne();
 
     double calculerSousTotal();
 
