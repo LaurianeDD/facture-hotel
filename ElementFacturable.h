@@ -1,7 +1,5 @@
-
 #ifndef __ELEMENTFACTURABLE_H__
 #define __ELEMENTFACTURABLE_H__
-
 
 #include <string>
 
