@@ -1,30 +1,9 @@
 #include <iostream>
 #include "FacturableUnite.h"
-#include "OverWriteQuantity.h"
-#include "InvalidValue.h"
 
-FacturableUnite::FacturableUnite( std::string description, double prix) : ElementFacturable(
+FacturableUnite::FacturableUnite( std::string description, double prix, int quantite) : ElementFacturable(
         description, prix) {
-    this->quantite = 0;
-}
-
-void FacturableUnite::setQuantite(int quantite) {
-    try {
-        if (this->quantite != 0)
-            throw OverWriteQuantity(this->description, this->quantite, quantite);
-
-        if (quantite <= 0)
-            throw InvalidValue(this->description, quantite);
-
-        this->quantite = quantite;
-
-    } catch (const OverWriteQuantity& ex) {
-        this->quantite = quantite;
-        std::cout << ex.getMessage() << std::endl;
-
-    } catch (const InvalidValue& ex) {
-        std::cout << ex.getMessage() << std::endl;
-    }
+    this->quantite = quantite;
 }
 
 int FacturableUnite::getQuantite() {
