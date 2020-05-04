@@ -1,5 +1,7 @@
+#include <iostream>
 #include "FacturableFixe.h"
 #include "FacturableUnite.h"
+#include "AlreadyAdded.h"
 
 FacturableFixe::FacturableFixe( std::string description, double prix) : ElementFacturable(
         description, prix) {
@@ -7,8 +9,15 @@ FacturableFixe::FacturableFixe( std::string description, double prix) : ElementF
 }
 
 void FacturableFixe::selectionnerService() {
-    //TODO Add check
-    this->selectionne = true;
+
+    try {
+        if (this->selectionne)
+            throw AlreadyAdded(this->description);
+
+        this->selectionne = true;
+    } catch (const AlreadyAdded& ex) {
+        std::cout << ex.getMessage() << std::endl;
+    }
 }
 
 bool FacturableFixe::isSelectionne() {
