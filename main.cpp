@@ -13,12 +13,10 @@ void ajouterAccesGym(std::map<int, ElementFacturable*>& facture, int ordre);
 void afficherFacture(std::map<int, ElementFacturable*>& facture);
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-
     std::map<int, ElementFacturable*> facture;
 
     bool fin = false;
-    int option = 0;
+    int option;
 
     do {
         afficherMenu();
@@ -54,13 +52,13 @@ int main() {
         }
     } while (!fin);
 
+    //Desallocation des espaces memoires sur le tas
     std::map<int, ElementFacturable*>::iterator it;
 
     for(it = facture.begin(); it != facture.end(); it++) {
         delete it->second;
         it->second = NULL;
     }
-
 
     return 0;
 }
@@ -97,11 +95,13 @@ void ajouterNuitee(std::map<int, ElementFacturable*>& facture, int ordre) {
     } catch (const int &code) {
 
         if (code == 1) {
-            delete facture.find( ordre)->second;
+            delete facture.find(ordre)->second;
             facture[ordre] = nuitee;
             std::cout << "Nombre de nuitee modifie. Nouvelle quantite: " + std::to_string(quantite) << std::endl;
         } else if (code == 2) {
             std::cout << "Nombre de nuitee invalide. Nuitee necessite une quantite entiere positive."<< std::endl;
+        } else {
+            std::cout << "Erreur indefinie" << std::endl;
         }
     }
 }
@@ -132,6 +132,8 @@ void ajouterRepas(std::map<int, ElementFacturable*>& facture, int ordre) {
             std::cout << "Nombre de repas modifie. Nouvelle quantite: " + std::to_string(quantite) << std::endl;
         } else if (code == 2) {
             std::cout << "Nombre de repas invalide. Repas necessite une quantite entiere positive."<< std::endl;
+        } else {
+            std::cout << "Erreur indefinie" << std::endl;
         }
     }
 }
@@ -152,6 +154,8 @@ void ajouterAccesSpa(std::map<int, ElementFacturable*>& facture, int ordre) {
 
         if (code == 1) {
             std::cout << "L'acces au Spa a deja ete ajoute sur cette facture." << std::endl;
+        } else {
+            std::cout << "Erreur indefinie" << std::endl;
         }
     }
 
@@ -173,6 +177,8 @@ void ajouterAccesGym(std::map<int, ElementFacturable*>& facture, int ordre) {
 
         if (code == 1) {
             std::cout << "L'acces au Gym a deja ete ajoute sur cette facture." << std::endl;
+        } else {
+            std::cout << "Erreur indefinie" << std::endl;
         }
     }
 
@@ -204,9 +210,9 @@ void afficherFacture(std::map<int, ElementFacturable*>& facture) {
         std::cout << it->second->toString() << std::endl;
         std::cout << std::fixed << std::setw(10) << it->second->getPrix();
         std::cout << std::fixed << std::setw(10) << it->second->calculerSousTotal();
-        std::cout << std::fixed << std::setw(10)  << it->second->calculerMontantTaxeBase();
-        std::cout << std::fixed << std::setw(10)  << it->second->calculerMontantTaxeAjoutee();
-        std::cout << std::fixed << std::setw(10)  << it->second->calculerTotal();
+        std::cout << std::fixed << std::setw(10) << it->second->calculerMontantTaxeBase();
+        std::cout << std::fixed << std::setw(10) << it->second->calculerMontantTaxeAjoutee();
+        std::cout << std::fixed << std::setw(10) << it->second->calculerTotal();
         std::cout << std::endl;
         std::cout << separateur;
     }
