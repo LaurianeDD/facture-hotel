@@ -10,13 +10,17 @@ double FacturableFixe::calculerSousTotal() {
 }
 
 double FacturableFixe::calculerMontantTaxeBase() {
-    return calculerSousTotal() * (TAXE_BASE / 100);
+    return calculerSousTotal() * (TAXE_BASE / 100.00);
 }
 
 double FacturableFixe::calculerMontantTaxeAjoutee() {
-    return calculerSousTotal() * (TAXE_AJOUTEE / 100);
+    return calculerSousTotal() * (TAXE_AJOUTEE / 100.00);
 }
 
 double FacturableFixe::calculerTotal() {
     return calculerSousTotal() + calculerMontantTaxeBase() + calculerMontantTaxeAjoutee();
+}
+
+std::string FacturableFixe::toString() {
+    return this->description;
 }

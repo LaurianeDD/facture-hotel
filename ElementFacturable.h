@@ -28,6 +28,8 @@ public:
     virtual double calculerMontantTaxeAjoutee() = 0;
 
     virtual double calculerTotal() = 0;
+
+    virtual std::string toString() = 0;
 };
 
 

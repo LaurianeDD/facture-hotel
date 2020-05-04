@@ -19,6 +19,8 @@ public:
     double calculerMontantTaxeAjoutee();
 
     double calculerTotal();
+
+    std::string toString();
 };
 
 
